@@ -8,22 +8,24 @@ export default function Form() {
   const symbolRef = useRef();
   const lengthRef = useRef();
 
+  const [password, setPassword] = useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(
-      generatePassword(
-        numberRef.current.checked,
-        symbolRef.current.checked,
-        lengthRef.current.value || 6
-      )
+    let newPassword = generatePassword(
+      numberRef.current.checked,
+      symbolRef.current.checked,
+      lengthRef.current.value || 6
     );
+
+    setPassword(newPassword);
   };
 
   return (
     <form className='password_form' onSubmit={handleSubmit}>
       <h2>Generate a secure password</h2>
       <div className='password_inputs'>
-        <h4 className='password_text'>Lorem ipsum dolor sit.</h4>
+        <h4 className='password_text'>{password}</h4>
         <div className='flex'>
           <label htmlFor='password-length'></label>
           <input
