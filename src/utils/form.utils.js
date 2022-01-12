@@ -1,16 +1,30 @@
-const generatePassword = (hasNumber = false, hasSymbols = false, len = 6) => {
-  let alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let numbers = '0123456789';
-  let symbols = '[]{}?!|-_*#^/()&%$';
+const getRandomLetter = () => {
+  let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let randomIndex = Math.floor(Math.random() * charset.length);
+  return charset[randomIndex];
+};
+const getRandomNumber = () => {
+  let charset = '0123456789';
+  let randomIndex = Math.floor(Math.random() * charset.length);
+  return charset[randomIndex];
+};
+const getRandomSymbol = () => {
+  let charset = '[]{}?!|-_*#^/()&%$';
+  let randomIndex = Math.floor(Math.random() * charset.length);
+  return charset[randomIndex];
+};
 
-  let charset = alphabet;
-  charset = hasNumber ? charset + numbers : charset;
-  charset = hasSymbols ? charset + symbols : charset;
+const generatePassword = (hasNumber = false, hasSymbol = false, len = 6) => {
+  let functionSet = [getRandomLetter];
+
+  functionSet = hasNumber ? [...functionSet, getRandomNumber] : functionSet;
+  functionSet = hasSymbol ? [...functionSet, getRandomSymbol] : functionSet;
 
   let password = [];
   for (let i = 0; i < len; i++) {
-    let randomIndex = Math.floor(Math.random() * charset.length);
-    password.push(charset[randomIndex]);
+    let randomIndex = Math.floor(Math.random() * functionSet.length);
+    let charachter = functionSet[randomIndex]();
+    password.push(charachter);
   }
 
   return password.join('');
