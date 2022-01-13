@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
-
-// Utility functions
 import { generatePassword } from '../utils/form.utils';
+import './Form.css';
 
 export default function Form() {
   const numberRef = useRef();
@@ -23,11 +22,10 @@ export default function Form() {
 
   return (
     <form className='password_form' onSubmit={handleSubmit}>
-      <h2>Generate a secure password</h2>
+      <h2>Gerar uma senha segura</h2>
       <div className='password_inputs'>
-        <h4 className='password_text'>{password}</h4>
         <div className='flex'>
-          <label htmlFor='password-length'></label>
+          <label htmlFor='password-length'>Quantidade de caracteres</label>
           <input
             type='number'
             max={72}
@@ -38,14 +36,15 @@ export default function Form() {
           />
         </div>
         <div className='flex'>
-          <label htmlFor='numbers'>Include numbers?</label>
+          <label htmlFor='numbers'>Incluir números?</label>
           <input type='checkbox' name='numbers' ref={numberRef} />
         </div>
         <div className='flex'>
-          <label htmlFor='symbols'>Include symbols?</label>
+          <label htmlFor='symbols'>Incluir símbolos?</label>
           <input type='checkbox' name='symbols' ref={symbolRef} />
         </div>
         <button className='btn'>Generate</button>
+        <h4 className='password_text'>Sua senha: {password}</h4>
       </div>
     </form>
   );
