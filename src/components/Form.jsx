@@ -5,6 +5,7 @@ import './Form.css';
 export default function Form() {
   const numberRef = useRef();
   const symbolRef = useRef();
+
   const lengthRef = useRef();
 
   const [password, setPassword] = useState('');
@@ -40,7 +41,7 @@ export default function Form() {
           <input type='checkbox' name='numbers' ref={numberRef} />
         </div>
         <div className='flex'>
-          <label htmlFor='symbols'>Incluir símbolos?</label>
+          <label htmlFor='symbols'>Incluir símbolos?</label>{' '}
           <input type='checkbox' name='symbols' ref={symbolRef} />
         </div>
         <button className='btn'>Generate</button>
